@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <html>
+
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>@import "./style.css";</style>
+    </head>
+
    <header>
         <h1>AD EC TS path Copier!</h1>
         <p>Yep</p>
     </header> 
 
     <body>
-        <style>
-            .inline {
-                float:left;
-                margin: auto 5px auto 5px
-            }
-            .clearboth {
-                clear:both
-            }
-        </style>
+        
+        <p class="inline">TTs:</p>
+        <input id="TTInput" class="clearboth default" type="number" oninput="dispatchCheckTTs()">
+        
+        <br><br>
 
         <div id="ECs"></div>
 
         <br class="clearboth">
+        
+        <script type="module" src="./stuff.js"></script>
 
-        <script src="stuff.js"></script>
+        <input class="default">
         
-        <input>
-        
-        
-
     </body>
 </html>

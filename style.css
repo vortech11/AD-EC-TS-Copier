@@ -1,0 +1,48 @@
+:root {
+    font-size: 120%;
+    --size:20px;
+}
+
+body {
+    font-size: 1rem;
+}
+
+button {
+    font-size: 1rem;
+}
+
+input {
+    width:var(--size);
+    height:var(--size);
+}
+
+#ECs {
+    column-count: 3;
+    width:fit-content;
+    width:auto;
+}
+
+@media only screen and (min-width: 750px) {
+    #ECs {
+        column-count:4;
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    #ECs {
+        column-count:5;
+    }
+}
+
+.default {
+    height:auto; 
+    width:auto;
+}
+
+.inline {
+    float:left;
+    margin: auto 5px auto 5px
+}
+.clearboth {
+    clear:both
+}

@@ -1,39 +1,63 @@
-const ECs = [["1 x 1", "the first"],
-            ["1 x 2", "the second"],
-            ["2 x 1", "you get the point"],
-            ["2 x 2", "..."]]
+function dispatchCheckTTs(){
+    const event = new CustomEvent("checkTTs");
+    document.querySelectorAll(".ECName").forEach(element => {
+        element.dispatchEvent(event);
+    });
+};
 
+window.dispatchCheckTTs = dispatchCheckTTs;
 
-const container = document.getElementById("ECs");
+fetch('./data.json')
+    .then(response => response.json())
+    .then(data => {
+        const ECs = data;
+        console.log(ECs);
+        
+        const container = document.getElementById("ECs");
 
-const ECs_length = ECs.length;
-for(var ECNum = 0; ECNum < ECs_length; ECNum++){
-    const div = document.createElement("div");
-    div.className = "clearboth";
+        const ECs_length = ECs.length;
+        for(var ECNum = 0; ECNum < ECs_length; ECNum++){
+            const div = document.createElement("div");
+            div.className = "clearboth";
 
-    const checkbox = document.createElement("input");
-    checkbox.type="checkbox";
-    checkbox.className="inline";
+            const checkbox = document.createElement("input");
+            checkbox.type="checkbox";
+            checkbox.className="inline";
 
-    const ECName = document.createElement("p");
-    const node = document.createTextNode(ECs[ECNum][0]);
-    ECName.appendChild(node);
-    ECName.className="inline";
+            const ECName = document.createElement("p");
+            const node = document.createTextNode(ECs[ECNum][0]);
+            ECName.appendChild(node);
+            ECName.className="inline";
+            ECName.classList.add("ECName");
+            ECName.TTNum = ECs[ECNum][1];
 
-    const copier = document.createElement("button");
-    copier.textContent = "Copy";
-    copier.className = "inline";
-    copier.TSpath = ECs[ECNum][1]
-    copier.addEventListener("click", copy);
+            ECName.addEventListener("checkTTs", updateTTs);
 
-    div.appendChild(checkbox);
-    div.appendChild(ECName);
-    div.appendChild(copier);
+            const copier = document.createElement("button");
+            copier.textContent = "Copy";
+            copier.className = "inline";
+            copier.TSpath = ECs[ECNum][2];
+            copier.addEventListener("click", copy);
 
-    container.appendChild(div);
+            div.appendChild(checkbox);
+            div.appendChild(ECName);
+            div.appendChild(copier);
+
+            container.appendChild(div);
+        }
+});
+
+function updateTTs(evt) {
+    let TT = evt.currentTarget.TTNum;
+        if (document.getElementById("TTInput").value < TT) {
+            evt.currentTarget.style.backgroundColor = "Red";
+        }
+        else {
+            evt.currentTarget.style.backgroundColor = "Green"
+        };
 }
-
 
 function copy(evt) {
+    console.log(evt.currentTarget.TSpath);
     navigator.clipboard.writeText(evt.currentTarget.TSpath);
-}
+};
