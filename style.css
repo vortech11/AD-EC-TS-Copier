@@ -1,5 +1,5 @@
 :root {
-    font-size: 100%;
+    font-size: 130%;
     --size:20px;
 }
 
@@ -17,7 +17,7 @@ input {
 }
 
 #ECs {
-    column-count: 3;
+    column-count: 2;
     width:fit-content;
     width:auto;
 }
