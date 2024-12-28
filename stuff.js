@@ -25,13 +25,21 @@ fetch('./data.json')
             checkbox.className="inline";
 
             const ECName = document.createElement("p");
-            const node = document.createTextNode(ECs[ECNum][0]);
+            var node = document.createTextNode(ECs[ECNum][0]);
             ECName.appendChild(node);
             ECName.className="inline";
             ECName.classList.add("ECName");
+            ECName.classList.add("tooltip");
             ECName.TTNum = ECs[ECNum][1];
 
             ECName.addEventListener("checkTTs", updateTTs);
+
+            const Tooltip = document.createElement("span");
+            var node = document.createTextNode(ECs[ECNum][1]);
+            Tooltip.appendChild(node);
+            Tooltip.className="tooltiptext";
+
+            ECName.appendChild(Tooltip);
 
             const copier = document.createElement("button");
             copier.textContent = "Copy";
